@@ -88,14 +88,14 @@ graph TD
 
 ## 🔗 Microsoft Foundry Integration
 
-BogdAI uses **Foundry IQ** as its knowledge grounding layer:
+BogdAI uses **Foundry IQ** as its knowledge grounding layer and reasoning engine:
 
-1. `agent.py --smoke-test` connects to your Azure AI project endpoint.
-2. Makes a test call to the configured `gpt-4.1-mini` deployment.
-3. If successful, Foundry mode drives the analysis.
-4. If unavailable, the local deterministic fallback runs automatically.
+1. The `GroundingAgent` dynamically queries the LLM to map contract issues to synthetic compliance policies, returning a structured JSON citation.
+2. The `RiskReasoningAgent` prompts the LLM with the grounded evidence to dynamically generate a custom 3-step reasoning chain (observation → inference) and assign a risk score.
+3. The agents enforce structured outputs using `response_format={"type": "json_object"}`.
+4. If the Azure AI project is unavailable, the pipeline seamlessly degrades to a deterministic local fallback engine.
 
-The output always labels `"grounding_layer": "Foundry IQ"`, satisfying the Microsoft IQ intelligence-layer requirement.
+You can view a fully generated live LLM response in [`demo_outputs/test_contract_1_analysis.json`](file:///demo_outputs/test_contract_1_analysis.json).
 
 ---
 
