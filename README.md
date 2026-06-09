@@ -85,7 +85,7 @@ Synthetic Contract Text
 BogdAI uses **Foundry IQ** as the knowledge grounding layer. When configured:
 
 1. `agent.py --smoke-test` connects to your Azure AI project endpoint.
-2. Makes a test call to the configured `gpt-4o` deployment.
+2. Makes a test call to the configured `gpt-4o-mini` deployment.
 3. If successful, Foundry mode is used for the analysis.
 4. If not configured or unavailable, the local deterministic fallback runs automatically.
 
@@ -125,7 +125,7 @@ Copy-Item .env.example .env
 
 ```
 AZURE_AI_PROJECT_ENDPOINT=https://your-foundry-project-endpoint
-AZURE_AI_MODEL_DEPLOYMENT=gpt-4o
+AZURE_AI_MODEL_DEPLOYMENT=gpt-4o-mini
 BOGDAI_USE_FOUNDRY=true
 BOGDAI_ALLOW_LOCAL_FALLBACK=true
 ```
