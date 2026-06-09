@@ -1,0 +1,163 @@
+SYNTHETIC DEMO CONTRACT — TEST CONTRACT 1
+=========================================
+⚠ NOTICE: This is a SYNTHETIC DEMO document created for the BogdAI Contract Risk Agent
+hackathon demonstration. It does not represent any real company, hospital, pharmaceutical
+manufacturer, or legal agreement. All names, terms, and figures are fictitious.
+=========================================
+
+PHARMACEUTICAL SUPPLY AND ACCESS AGREEMENT
+
+Agreement Reference: SYNTH-PHARMA-2026-001
+Date: January 15, 2026
+Parties:
+  - Supplier: SynthPharma Inc. (a fictitious entity)
+  - Buyer:    Metro General Hospital System (a fictitious entity)
+
+---
+
+1. DEFINITIONS
+
+1.1 "Products" means the pharmaceutical compounds listed in Schedule A, including
+Compound X-47 and related biologics.
+
+1.2 "Delivery Period" means the period within which Products must be delivered to
+the Buyer's designated receiving facility.
+
+1.3 "Material Deviation" means any departure from agreed quality, quantity, or
+compliance specifications that may affect product safety or regulatory status.
+
+---
+
+2. SCOPE OF AGREEMENT
+
+2.1 SynthPharma Inc. agrees to supply Compound X-47 and associated pharmaceutical
+products to Metro General Hospital System under the terms and conditions set forth
+herein.
+
+2.2 This agreement covers procurement, delivery, storage, and compliance obligations
+for a term of three (3) years commencing from the date of signature.
+
+---
+
+3. PRICING
+
+3.1 The initial unit price for Compound X-47 shall be $4,200 per unit as of the
+effective date of this agreement.
+
+3.2 Prices may change at any time based on market conditions, raw material costs,
+or manufacturing expenses. The Supplier reserves the right to adjust pricing without
+a defined cap or advance notice period.
+
+3.3 The Buyer acknowledges that pricing is subject to adjustment at Supplier's
+sole discretion in response to market conditions, including supply chain volatility
+and regulatory costs.
+
+3.4 No maximum annual adjustment percentage is defined in this agreement.
+
+---
+
+4. REGULATORY COMPLIANCE AND DEVIATION REPORTING
+
+4.1 Both parties agree to comply with applicable federal, state, and local regulations
+governing the manufacture, supply, and use of pharmaceutical products.
+
+4.2 Deviation Reporting: The supplier shall report material deviations within ninety
+days of discovery. This includes quality control failures, batch recall triggers, and
+regulatory non-conformance events identified during manufacturing or delivery.
+
+4.3 For deviations considered non-material by the Supplier's internal quality team,
+no reporting obligation applies unless the Buyer formally requests disclosure.
+
+---
+
+5. DELIVERY AND SUPPLY OBLIGATIONS
+
+5.1 SynthPharma Inc. shall use commercially reasonable efforts to deliver Products
+within the agreed lead times.
+
+5.2 All deliveries are subject to availability. In the event that Products are not
+available due to production constraints, force majeure events, or supply chain
+disruptions, SynthPharma Inc. shall notify the Buyer at its earliest convenience.
+
+5.3 No escalation timeline or substitution process is defined for supply interruption
+events. The Buyer accepts that delivery schedules may be adjusted without a defined
+remediation or contingency pathway.
+
+5.4 In the event of chronic delivery failure, the Buyer's sole remedy is to submit
+a written complaint. No penalties, substitution rights, or breach remedies are
+specified for repeated delivery failures.
+
+---
+
+6. INTELLECTUAL PROPERTY
+
+6.1 All formulations, manufacturing processes, and proprietary data related to
+Compound X-47 remain the exclusive intellectual property of SynthPharma Inc.
+
+6.2 The Buyer shall not reverse-engineer, disclose, or use any proprietary
+information for any purpose other than patient care as defined in Schedule B.
+
+---
+
+7. CONFIDENTIALITY
+
+7.1 Both parties agree to maintain the confidentiality of all proprietary and
+commercially sensitive information shared under this agreement for a period of
+five (5) years following expiration or termination.
+
+---
+
+8. TERM AND TERMINATION
+
+8.1 This agreement shall commence on January 15, 2026, and continue for a period
+of three (3) years unless terminated earlier in accordance with this Section.
+
+8.2 Either party may terminate this agreement for convenience by providing written
+notice. No minimum notice period is specified for termination for convenience.
+
+8.3 Immediate termination without cause is permitted if either party determines
+that continuation of the agreement is no longer commercially viable.
+
+---
+
+9. LIABILITY AND INDEMNIFICATION
+
+9.1 Each party shall indemnify and hold harmless the other party from and against
+claims arising from their own negligence or willful misconduct.
+
+9.2 SynthPharma Inc. shall not be liable for indirect, consequential, or punitive
+damages arising from delivery delays, quality failures, or regulatory actions.
+
+9.3 No cap on liability is defined in this agreement. Both parties acknowledge that
+maximum financial exposure under this agreement is unlimited to the extent permitted
+by applicable law.
+
+---
+
+10. GOVERNING LAW AND DISPUTE RESOLUTION
+
+10.1 This agreement shall be governed by the laws of the State of New York.
+
+10.2 Any dispute arising under this agreement shall first be subject to good-faith
+negotiation, followed by binding arbitration under the rules of the American
+Arbitration Association.
+
+---
+
+SCHEDULE A — PRODUCT LIST (SYNTHETIC)
+
+Product Code    | Description                         | Unit Price
+SYNTH-X47-001   | Compound X-47 Standard Dose          | $4,200/unit
+SYNTH-X47-002   | Compound X-47 High-Dose Formulation  | $6,800/unit
+
+---
+
+SCHEDULE B — PERMITTED USE
+
+Products procured under this agreement are intended for patient care at facilities
+operated by Metro General Hospital System as registered with the applicable state
+health authority.
+
+---
+
+[END OF SYNTHETIC DEMO CONTRACT 1]
