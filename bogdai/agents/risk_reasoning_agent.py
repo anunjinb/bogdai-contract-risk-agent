@@ -9,8 +9,11 @@ This is the core "multi-step reasoning" layer for hackathon scoring.
 """
 from __future__ import annotations
 
+import json
 import logging
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
+
+from bogdai.core.foundry_client import foundry_client
 
 logger = logging.getLogger(__name__)
 
@@ -26,13 +29,14 @@ class RiskReasoningAgent:
     name = "Risk Reasoning Agent"
     role = "Compared contract language against grounded rules and inferred risk severity."
 
-    def run(self, grounding_result: Dict[str, Any]) -> Dict[str, Any]:
+    def run(self, grounding_result: Dict[str, Any], foundry_mode: str = "local_fallback") -> Dict[str, Any]:
         """
         Produce risk flags with full reasoning chains.
 
         Args:
             grounding_result: Output from GroundingAgent, containing
                               ``grounded_rules`` list.
+            foundry_mode: Mode passed from orchestrator.
 
         Returns:
             dict with key ``risk_flags``: list of flag dicts ready for
@@ -49,7 +53,16 @@ class RiskReasoningAgent:
             citation = rule.get("citation", {})
             risk_level: str = rule.get("risk_level", "MEDIUM")
 
-            reasoning_steps = self._build_reasoning_steps(rule, citation)
+            if foundry_mode == "foundry":
+                llm_data = self._build_reasoning_llm(rule, citation)
+                if llm_data:
+                    reasoning_steps = llm_data.get("reasoning_steps", [])
+                    risk_level = llm_data.get("risk_level", risk_level)
+                    rule["risk_score"] = llm_data.get("risk_score", rule.get("risk_score", 50))
+                else:
+                    reasoning_steps = self._build_reasoning_steps(rule, citation)
+            else:
+                reasoning_steps = self._build_reasoning_steps(rule, citation)
 
             flag: Dict[str, Any] = {
                 "flag_id": f"FLAG-{flag_counter:03d}",
@@ -102,6 +115,40 @@ class RiskReasoningAgent:
     # ------------------------------------------------------------------
     # Reasoning chain builder
     # ------------------------------------------------------------------
+
+    def _build_reasoning_llm(self, rule: Dict[str, Any], citation: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """Use the LLM to generate the 3-step reasoning chain and risk score."""
+        category = rule.get("risk_category", "General")
+        issue = rule.get("issue", "")
+        evidence = citation.get("quoted_evidence", "")
+        
+        prompt = f"""You are the BogdAI Risk Reasoning Agent.
+Your task is to analyze a contract risk and produce a 3-step reasoning chain explaining why this is a risk, and assign a risk level and score.
+
+Risk Category: {category}
+Identified Issue: {issue}
+Grounded Evidence from Policy: {evidence}
+
+Return ONLY a JSON object with this schema:
+{{
+  "reasoning_steps": [
+    {{"step": 1, "observation": "...", "inference": "..."}},
+    {{"step": 2, "observation": "...", "inference": "..."}},
+    {{"step": 3, "observation": "...", "inference": "..."}}
+  ],
+  "risk_level": "HIGH",
+  "risk_score": 85
+}}
+"""
+        response_text = foundry_client.call_model(prompt, max_tokens=400, response_format={"type": "json_object"})
+        if not response_text:
+            return None
+            
+        try:
+            return json.loads(response_text)
+        except json.JSONDecodeError:
+            logger.warning("[RiskReasoningAgent] LLM returned invalid JSON.")
+            return None
 
     def _build_reasoning_steps(
         self, rule: Dict[str, Any], citation: Dict[str, Any]

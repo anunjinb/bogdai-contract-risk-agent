@@ -11,10 +11,13 @@ Every risk flag includes structured citation objects.
 """
 from __future__ import annotations
 
+import json
 import logging
 import os
 from pathlib import Path
 from typing import Dict, Any, List, Optional
+
+from bogdai.core.foundry_client import foundry_client
 
 logger = logging.getLogger(__name__)
 
@@ -57,12 +60,13 @@ class GroundingAgent:
             except OSError as exc:
                 logger.warning("[GroundingAgent] Could not read %s: %s", doc_path.name, exc)
 
-    def run(self, matched_rules: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def run(self, matched_rules: List[Dict[str, Any]], foundry_mode: str = "local_fallback") -> Dict[str, Any]:
         """
         Ground each matched risk rule with a citation from the knowledge store.
 
         Args:
             matched_rules: List of rules from risk_rules.get_applicable_rules().
+            foundry_mode: Mode passed from orchestrator.
 
         Returns:
             dict with key ``grounded_rules``: each rule augmented with a citation.
@@ -71,7 +75,13 @@ class GroundingAgent:
         grounded: List[Dict[str, Any]] = []
 
         for rule in matched_rules:
-            citation = self._build_citation(rule)
+            citation = None
+            if foundry_mode == "foundry":
+                citation = self._build_citation_llm(rule)
+            
+            if not citation:
+                citation = self._build_citation(rule)
+                
             grounded.append({**rule, "citation": citation})
 
         sources_used = list(
@@ -90,6 +100,52 @@ class GroundingAgent:
     # ------------------------------------------------------------------
     # Private helpers
     # ------------------------------------------------------------------
+
+    def _build_citation_llm(self, rule: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """Use the LLM to retrieve the best citation from loaded knowledge docs."""
+        issue = rule.get("issue", "")
+        if not issue or not self._knowledge_store:
+            return None
+            
+        docs_text = []
+        for name, text in self._knowledge_store.items():
+            docs_text.append(f"--- Document: {name} ---\n{text}\n")
+        all_docs = "\n".join(docs_text)
+        
+        prompt = f"""You are the BogdAI Grounding Agent.
+Your task is to find the most relevant citation from the provided knowledge documents that supports the following risk issue.
+
+Risk Issue: {issue}
+
+Knowledge Documents:
+{all_docs}
+
+Return ONLY a JSON object with the following schema:
+{{
+  "source_document": "filename of the document (e.g., synthetic_compliance_policy.md)",
+  "section": "The section header where the evidence was found",
+  "quoted_evidence": "1-2 sentences of exact quoted evidence supporting the risk",
+  "retrieval_confidence": a float between 0.0 and 1.0
+}}
+"""
+        response_text = foundry_client.call_model(prompt, max_tokens=300, response_format={"type": "json_object"})
+        if not response_text:
+            return None
+        
+        try:
+            data = json.loads(response_text)
+            doc_name = data.get("source_document", "synthetic_compliance_policy.md")
+            return {
+                "source_title": self._doc_title(doc_name),
+                "source_document": doc_name,
+                "section": data.get("section", "General"),
+                "quoted_evidence": data.get("quoted_evidence", ""),
+                "grounding_layer": "Foundry IQ",
+                "retrieval_confidence": data.get("retrieval_confidence", 0.90),
+            }
+        except json.JSONDecodeError:
+            logger.warning("[GroundingAgent] LLM returned invalid JSON.")
+            return None
 
     def _build_citation(self, rule: Dict[str, Any]) -> Dict[str, Any]:
         """Build a citation object for one rule."""
