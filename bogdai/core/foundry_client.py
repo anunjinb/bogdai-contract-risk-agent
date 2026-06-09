@@ -79,8 +79,9 @@ class FoundryClient:
             return self._local_smoke_result()
 
         try:
-            chat = self._client.inference.get_azure_openai_client()  # type: ignore
-            response = chat.chat.completions.create(
+            # azure-ai-projects v2.1.0: get_openai_client() is on the client directly
+            openai_client = self._client.get_openai_client()  # type: ignore
+            response = openai_client.chat.completions.create(
                 model=settings.azure_ai_model_deployment,
                 messages=[
                     {
@@ -112,8 +113,8 @@ class FoundryClient:
                 return None
 
         try:
-            chat = self._client.inference.get_azure_openai_client()  # type: ignore
-            response = chat.chat.completions.create(
+            openai_client = self._client.get_openai_client()  # type: ignore
+            response = openai_client.chat.completions.create(
                 model=settings.azure_ai_model_deployment,
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=max_tokens,

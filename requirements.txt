@@ -2,3 +2,9 @@ python-dotenv>=1.0.0
 pydantic>=2.0.0
 pytest>=7.4.0
 azure-identity>=1.15.0
+
+# Microsoft Foundry / Azure AI Projects SDK
+# Install the azd Foundry extension first: azd ext install microsoft.foundry
+# Then authenticate: azd auth login
+azure-ai-projects>=2.1.0
+openai>=1.0.0
