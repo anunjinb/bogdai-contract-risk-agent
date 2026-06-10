@@ -8,3 +8,5 @@ azure-identity>=1.15.0
 # Then authenticate: azd auth login
 azure-ai-projects>=2.1.0
 openai>=1.0.0
+
+

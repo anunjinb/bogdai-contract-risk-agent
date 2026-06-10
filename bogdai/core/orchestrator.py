@@ -122,11 +122,11 @@ class BogdAIOrchestrator:
 
         # Step 4: Grounding
         logger.info("[Orchestrator] Agent 3/6 → Grounding")
-        grounding_result = self._grounding.run(matched_rules)
+        grounding_result = self._grounding.run(matched_rules, foundry_mode=foundry_mode)
 
         # Step 5: Risk Reasoning
         logger.info("[Orchestrator] Agent 4/6 → Risk Reasoning")
-        reasoning_result = self._reasoning.run(grounding_result)
+        reasoning_result = self._reasoning.run(grounding_result, foundry_mode=foundry_mode)
 
         # Step 6: Verifier
         logger.info("[Orchestrator] Agent 5/6 → Verifier")

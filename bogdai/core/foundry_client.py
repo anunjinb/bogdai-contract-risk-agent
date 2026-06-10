@@ -102,7 +102,9 @@ class FoundryClient:
             logger.warning("[FoundryClient] Smoke test call failed (%s). Falling back.", exc)
             return self._local_smoke_result()
 
-    def call_model(self, prompt: str, max_tokens: int = 500) -> Optional[str]:
+    def call_model(
+        self, prompt: str, max_tokens: int = 500, response_format: Optional[dict] = None
+    ) -> Optional[str]:
         """
         Call the configured model with *prompt*.
 
@@ -114,11 +116,15 @@ class FoundryClient:
 
         try:
             openai_client = self._client.get_openai_client()  # type: ignore
-            response = openai_client.chat.completions.create(
-                model=settings.azure_ai_model_deployment,
-                messages=[{"role": "user", "content": prompt}],
-                max_tokens=max_tokens,
-            )
+            kwargs = {
+                "model": settings.azure_ai_model_deployment,
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": max_tokens,
+            }
+            if response_format:
+                kwargs["response_format"] = response_format
+                
+            response = openai_client.chat.completions.create(**kwargs)
             content = response.choices[0].message.content.strip()
             self._mode = "foundry"
             return content
