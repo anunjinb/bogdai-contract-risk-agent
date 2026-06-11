@@ -10,6 +10,7 @@ ManagedIdentity, environment, etc.) – no hard-coded credentials.
 from __future__ import annotations
 
 import logging
+import os
 from typing import Optional
 
 from bogdai.core.config import settings
@@ -40,10 +41,26 @@ class FoundryClient:
 
         try:
             # Lazy import so the app runs without azure-ai-projects installed
-            from azure.identity import DefaultAzureCredential  # type: ignore
             from azure.ai.projects import AIProjectClient  # type: ignore
+            from azure.identity import DefaultAzureCredential  # type: ignore
 
-            credential = DefaultAzureCredential()
+            api_key = os.getenv("AZURE_AI_API_KEY", "").strip()
+            if api_key:
+                from openai import AzureOpenAI
+
+                self._client = AzureOpenAI(
+                    api_key=os.getenv("AZURE_AI_API_KEY"),
+                    azure_endpoint="https://bogdai-resource.services.ai.azure.com",
+                    api_version="2024-02-01",
+                )
+                self._mode = "foundry"
+                logger.info("[FoundryClient] Using AzureOpenAI from AZURE_AI_API_KEY.")
+                return True
+            else:
+                credential = DefaultAzureCredential()
+                logger.info(
+                    "[FoundryClient] AZURE_AI_API_KEY not set; using DefaultAzureCredential."
+                )
             self._client = AIProjectClient(
                 endpoint=settings.azure_ai_project_endpoint,
                 credential=credential,
@@ -79,9 +96,7 @@ class FoundryClient:
             return self._local_smoke_result()
 
         try:
-            # azure-ai-projects v2.1.0: get_openai_client() is on the client directly
-            openai_client = self._client.get_openai_client()  # type: ignore
-            response = openai_client.chat.completions.create(
+            response = self._client.chat.completions.create(  # type: ignore
                 model=settings.azure_ai_model_deployment,
                 messages=[
                     {
@@ -115,7 +130,6 @@ class FoundryClient:
                 return None
 
         try:
-            openai_client = self._client.get_openai_client()  # type: ignore
             kwargs = {
                 "model": settings.azure_ai_model_deployment,
                 "messages": [{"role": "user", "content": prompt}],
@@ -123,8 +137,8 @@ class FoundryClient:
             }
             if response_format:
                 kwargs["response_format"] = response_format
-                
-            response = openai_client.chat.completions.create(**kwargs)
+
+            response = self._client.chat.completions.create(**kwargs)  # type: ignore
             content = response.choices[0].message.content.strip()
             self._mode = "foundry"
             return content
