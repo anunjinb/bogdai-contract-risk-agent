@@ -284,7 +284,7 @@ function UploadScreen({ onLoad }) {
   const [error, setError] = useState("");
   const inputRef = useRef(null);
 
-  const handleFile = (file) => {
+  const handleFile = async (file) => {
     if (!file) return;
     setError("");
     const name = file.name;
@@ -304,8 +304,31 @@ function UploadScreen({ onLoad }) {
       r.readAsText(file);
       return;
     }
-    if (lower.endsWith(".txt") || lower.endsWith(".pdf")) {
-      // No backend in this demo — run the contract through the sample pipeline.
+    if (lower.endsWith(".txt")) {
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const response = await fetch("http://127.0.0.1:8000/api/analyze", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Analyze failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+        onLoad(data, name);
+      } catch (err) {
+        console.warn("[BogdAI UI] Backend analyze failed, using sample report.", err);
+        setError("Backend unavailable. Showing sample analysis.");
+        onLoad(SAMPLE_REPORT, name);
+      }
+      return;
+    }
+    if (lower.endsWith(".pdf")) {
+      // PDF backend flow is not wired yet in this demo.
       onLoad(SAMPLE_REPORT, name);
       return;
     }
