@@ -1,0 +1,162 @@
+SYNTHETIC DEMO CONTRACT — TEST CONTRACT 2
+=========================================
+⚠ NOTICE: This is a SYNTHETIC DEMO document created for the BogdAI Contract Risk Agent
+hackathon demonstration. It does not represent any real company, hospital, pharmaceutical
+manufacturer, or legal agreement. All names, terms, and figures are fictitious.
+=========================================
+
+PHARMACEUTICAL SUPPLY AND ACCESS AGREEMENT (LOWER-RISK VERSION)
+
+Agreement Reference: SYNTH-PHARMA-2026-002
+Date: February 1, 2026
+Parties:
+  - Supplier: BetterPharma Solutions LLC (a fictitious entity)
+  - Buyer:    Lakeside Regional Health Network (a fictitious entity)
+
+---
+
+1. DEFINITIONS
+
+1.1 "Products" means the pharmaceutical compounds listed in Schedule A, including
+Compound Z-12 and associated biologic therapies.
+
+1.2 "Material Deviation" means any confirmed departure from agreed quality or
+safety specifications that may affect patient safety or regulatory compliance status.
+
+1.3 "Escalation Event" means any supply disruption exceeding three (3) business
+days that triggers mandatory notification and remediation obligations.
+
+---
+
+2. SCOPE OF AGREEMENT
+
+2.1 BetterPharma Solutions LLC agrees to supply Compound Z-12 and associated
+pharmaceutical products to Lakeside Regional Health Network under the terms
+set forth in this agreement.
+
+2.2 This agreement covers procurement, delivery, storage, and compliance for a
+term of two (2) years commencing from the date of signature.
+
+---
+
+3. PRICING
+
+3.1 The initial unit price for Compound Z-12 shall be $3,500 per unit as of the
+effective date.
+
+3.2 Pricing Review Process: Prices may be reviewed annually on the anniversary of
+the effective date. Any proposed price adjustment must be formally submitted to the
+Buyer at least ninety (90) days in advance of the proposed effective date.
+
+3.3 Annual price adjustments are capped at a maximum of five percent (5%) above
+the prior year's unit price, indexed to the U.S. Consumer Price Index (CPI).
+
+3.4 Any proposed adjustment exceeding the CPI cap requires written consent of both
+parties prior to taking effect.
+
+---
+
+4. REGULATORY COMPLIANCE AND DEVIATION REPORTING
+
+4.1 Both parties agree to maintain compliance with all applicable federal, state,
+and local regulations governing pharmaceutical supply and patient care.
+
+4.2 Deviation Reporting: The supplier shall report material deviations within
+fifteen (15) days of discovery. For deviations that may immediately affect patient
+safety or treatment availability, notification must occur within twenty-four (24)
+hours.
+
+4.3 Deviation reports shall include root cause analysis, corrective action plan,
+and expected resolution timeline.
+
+4.4 Failure to report within the specified window constitutes a material breach
+of this agreement.
+
+---
+
+5. DELIVERY AND SUPPLY OBLIGATIONS
+
+5.1 BetterPharma Solutions LLC commits to delivering Products within fourteen (14)
+calendar days of confirmed order receipt under normal operating conditions.
+
+5.2 Supply Continuity: In the event that Products become temporarily unavailable
+due to manufacturing or logistics disruption, the Supplier shall notify the Buyer
+within forty-eight (48) hours of the anticipated disruption.
+
+5.3 Escalation procedure: If delivery is delayed by more than five (5) business
+days, the Supplier must provide a written remediation plan within three (3)
+business days, including a substitution option or alternative source if available.
+
+5.4 Chronic failure is defined as three (3) or more delivery failures within a
+sixty (60) day period. Chronic failure triggers the Buyer's right to source
+alternative supply at Supplier's cost, capped at a reasonable market premium.
+
+---
+
+6. AUDIT RIGHTS
+
+6.1 Right to Audit: The Buyer shall have the right to audit the Supplier's
+manufacturing facilities, quality records, and compliance documentation once per
+calendar year, with thirty (30) days advance written notice.
+
+6.2 Extraordinary audits may be conducted within seven (7) business days notice
+if a material deviation, regulatory action, or patient safety event has been
+identified.
+
+6.3 The Supplier shall provide full access to all relevant records, personnel, and
+facilities required for audit completion.
+
+---
+
+7. LIABILITY AND INDEMNIFICATION
+
+7.1 Each party shall indemnify and hold harmless the other from claims arising from
+their own negligence, willful misconduct, or breach of this agreement.
+
+7.2 Liability Cap: The maximum aggregate liability of either party under this
+agreement shall not exceed the total contract value paid or payable in the twelve
+(12) months preceding the event giving rise to the claim.
+
+7.3 Consequential damages are excluded except in cases of fraud, gross negligence,
+or willful breach.
+
+7.4 The liability cap shall be reviewed and updated annually in connection with
+the pricing review process described in Section 3.
+
+---
+
+8. TERM AND TERMINATION
+
+8.1 This agreement commences February 1, 2026, and continues for two (2) years
+unless terminated earlier pursuant to this Section.
+
+8.2 Termination for Convenience: Either party may terminate this agreement for
+convenience by providing ninety (90) days prior written notice.
+
+8.3 During any termination notice period, both parties shall fulfill outstanding
+delivery obligations and maintain supply continuity to protect patient access.
+
+8.4 Termination for Cause: Either party may terminate immediately upon written
+notice if the other party commits a material breach and fails to cure within
+thirty (30) days of notice.
+
+---
+
+9. GOVERNING LAW AND DISPUTE RESOLUTION
+
+9.1 This agreement is governed by the laws of the State of Illinois.
+
+9.2 Disputes shall be resolved through escalating negotiation, then mediation,
+then binding arbitration under the AAA Commercial Rules.
+
+---
+
+SCHEDULE A — PRODUCT LIST (SYNTHETIC)
+
+Product Code    | Description                          | Unit Price
+SYNTH-Z12-001   | Compound Z-12 Standard Dose           | $3,500/unit
+SYNTH-Z12-002   | Compound Z-12 Extended-Release Form   | $5,200/unit
+
+---
+
+[END OF SYNTHETIC DEMO CONTRACT 2]
