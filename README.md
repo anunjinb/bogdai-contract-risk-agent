@@ -313,12 +313,13 @@ tests/
 | **Hackathon** | Microsoft Agents League @ AI Skills Fest 2026 |
 | **Track** | Reasoning Agents (Microsoft Foundry) |
 | **Microsoft IQ Layer** | Foundry IQ (knowledge grounding) |
+| **Demo Video** | https://youtu.be/v7TPjDV6XD4?si=1nCTZigWMdLtVDP8 |
 | **Deadline** | June 14, 2026 |
 
 ---
 
 <div align="center">
 
-🚧 **In development** — Agents League Hackathon 2026 · Branch: `dev`
+🚀 **Submitted** — Agents League Hackathon 2026
 
 </div>
