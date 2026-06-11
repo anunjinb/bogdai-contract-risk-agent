@@ -111,6 +111,7 @@ Copy-Item .env.example .env
 |----------|---------|---------|
 | `AZURE_AI_PROJECT_ENDPOINT` | — | Microsoft Foundry project endpoint |
 | `AZURE_AI_MODEL_DEPLOYMENT` | `gpt-4.1-mini` | Model deployment name |
+| `AZURE_AI_API_KEY` | — | Azure AI API key from ai.azure.com project page |
 | `BOGDAI_USE_FOUNDRY` | `true` | Enable Foundry calls |
 | `BOGDAI_ALLOW_LOCAL_FALLBACK` | `true` | Fall back to local mode if Foundry is unavailable |
 
@@ -134,6 +135,26 @@ Copy-Item .env.example .env
 python agent.py --analyze bogdai/data/synthetic_contracts/test_contract_1.txt
 python agent.py --analyze bogdai/data/synthetic_contracts/test_contract_2.txt
 ```
+
+---
+
+## 🖥️ Running the UI
+
+Start two terminals from the project root:
+
+Terminal 1 (API backend):
+
+```powershell
+PYTHONPATH=. python3 bogdai/api/server.py
+```
+
+Terminal 2 (Frontend):
+
+```powershell
+python3 -m http.server 3000
+```
+
+Then open http://127.0.0.1:3000/index.html
 
 ---
 
@@ -211,6 +232,8 @@ requirements.txt
 .env.example
 
 bogdai/
+  api/
+    server.py                     ← FastAPI endpoint for UI analyze calls
   agents/
     intake_agent.py               ← Agent 1 · Metadata extraction
     clause_extraction_agent.py    ← Agent 2 · Clause tagging
@@ -234,6 +257,7 @@ bogdai/
       synthetic_healthcare_procurement_rules.md
 
 tests/
+  test_high_risk_paths.py
   test_schema_contract.py
   test_orchestrator.py
   test_synthetic_data_safety.py
